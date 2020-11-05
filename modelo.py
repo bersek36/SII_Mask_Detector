@@ -6,8 +6,8 @@ import random
 from facenet_pytorch import MTCNN
 import numpy as np
 import torch
-import cv2
-
+import cv2 
+ ##
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 mtcnn = MTCNN(keep_all=True, device=device, margin = 40)
 
