@@ -1,5 +1,6 @@
 import pickle
 import random
+import os
 
 from PIL import Image, ImageDraw, ImageFont
 from sklearn.neighbors import KNeighborsClassifier
@@ -13,25 +14,19 @@ from networks import EmbeddingNet, TripletNet
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 mtcnn = MTCNN(keep_all=True, device=device, margin=40)
 
-checkpoint = torch.load(
-    "MaskRecognition/models/checkpoint_tr.pth", map_location=device
-)
+checkpoint = torch.load(os.environ["CHECK_POINT_PATH"], map_location=device)
 
 embedding_net = EmbeddingNet()
 
 model = TripletNet(embedding_net).to(device)
 model.load_state_dict(checkpoint["state_dict"])
 
-emb_single = pickle.load(
-    open("MaskRecognition/models/emb_single_triplet.p", "rb")
-)
+emb_single = pickle.load(open(os.environ["EMB_SINGLE_TRIPLET_PATH"], "rb"))
 
 X = emb_single["X"]
 y = emb_single["y"]
 
-fnt = ImageFont.truetype(
-    "C:/Users/Bersek/Desktop/Proyecto/MaskRecognition/ARIALBD.TTF", 40
-)
+fnt = ImageFont.truetype(os.environ["ARIALBD_PATH"], 40)
 
 neigh = KNeighborsClassifier(n_neighbors=3)
 neigh.fit(X, y)
