@@ -10,6 +10,9 @@ RUN apt-get update && apt install htop
 
 RUN ln -s /bin/pip3 /bin/pip
 
+# Evitar el error libGL.so.1:
+RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get -y install ffmpeg libsm6 libxext6
+
 # requitements.txt
 COPY requirements.txt .
 RUN pip install --upgrade pip && \

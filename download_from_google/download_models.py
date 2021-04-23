@@ -105,10 +105,10 @@ file_names = [
     os.environ["CHECK_POINT_NAME"],
 ]
 
-for file_id, file_name in zip(file_ids, file_names):
-    path = f"../model/{file_name}"
-    downloadFile(file_id, path)
+# for file_id, file_name in zip(file_ids, file_names):
+#     path = f"../model/{file_name}"
+#     downloadFile(file_id, path)
 # uploadFile('unnamed.jpg','unnamed.jpg','image/jpeg')
 # downloadFile('1Knxs5kRAMnoH5fivGeNsdrj_SIgLiqzV','google.jpg')
 # createFolder('Google')
-searchFile(10, "name contains 'Getting'")
+# searchFile(10, "name contains 'Getting'")
